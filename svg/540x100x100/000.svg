@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:lc="https://librecad.org" xmlns:xlink="http://www.w3.org/1999/xlink" width="100mm" height="60mm" viewBox="0 0 100 60">
     <g lc:layername="0" lc:is_locked="false" lc:is_construction="false" fill="none" stroke="black" stroke-width="1">
-        <path d="M0,0 L0,30 L3,60 L12,60 L18,42 L27,31 L50,27 L73,31 L82,42 L88,60 L97,60 L100,30 L100,0 "/>
+        <path d="M0,0 L10,0 L1.2,10 L1.18,29.94114677 L4.06788532,58.82 L11.14950412,58.82 L16.94922265,41.42084443 L26.36495171,29.91273112 L50,25.80228794 L73.63504829,29.91273112 L83.05077735,41.42084443 L88.85049588,58.82 L95.93211468,58.82 L98.82,29.94114677 L98.8,10 L90,0 L100,0 L100,30 L97,60 L88,60 L82,42 L73,31 L50,27 L27,31 L18,42 L12,60 L3,60 L0,30 L0,0 Z "/>
     </g>
 </svg>
