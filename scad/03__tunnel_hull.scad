@@ -15,12 +15,12 @@ module tunnel_hull(px=0,py=0,pz=0, rx=0,ry=0,rz=0){
      difference(){
         translate([0,0,0])
         rotate([90,0,90])
-        linear_extrude(40)
-        import("../svg/03__tunnel_hull/profile_02c.svg");
+        linear_extrude(200)
+        import("../svg/03__tunnel_hull/profile_03c.svg");
         translate([0.79,0.98,0.79])
         rotate([90,0,90])
-        linear_extrude(42)
-        import("../svg/03__tunnel_hull/profile_02s.svg");
+        linear_extrude(202)
+        import("../svg/03__tunnel_hull/profile_03s.svg");
         
         yCyl(5,10,  7,7,0);
         yCyl(5,10,  20,7,0);
@@ -29,10 +29,10 @@ module tunnel_hull(px=0,py=0,pz=0, rx=0,ry=0,rz=0){
         
         
      //*
-     translate([40,0,0])
+     translate([200,0,0])
         rotate([90,0,90])
         linear_extrude(0.79)
-        import("../svg/03__tunnel_hull/profile_02c.svg");   
+        import("../svg/03__tunnel_hull/profile_03c.svg");   
      //}
     //*/
     }//transform
