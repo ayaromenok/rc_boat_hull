@@ -1,7 +1,7 @@
 include <../../lib/lib2.scad>
 
 //left
-catamaranHullBoolean4(0,0,0, length=1199/2, section=3);
+catamaranHullBoolean4(0,0,0, length=1199/2, section=-1);
 //right
 //mirror([0,0,1])
 //catamaranHullBoolean4(0,0,0, 180,0,0, length=1129/2, section=3);
@@ -58,7 +58,8 @@ module catamaranHullBoolean4(px=0,py=0,pz=0, rx=0,ry=0,rz=0, length=1199, sectio
             _200s = 220*_scale;
             _p0=-529*_scale;
             _puzzle_step=40*_scale;
-            translate([(_p0-_ls/2+section_length*section),-_200s/2+1,_200s/2-1]){
+            if (section>=0){
+                translate([(_p0-_ls/2+section_length*section),-_200s/2+1,_200s/2-1]){
             
                 difference(){
                     yCube(_ls,_200s,_200s);
@@ -72,7 +73,8 @@ module catamaranHullBoolean4(px=0,py=0,pz=0, rx=0,ry=0,rz=0, length=1199, sectio
                         for (j=[-_200s/3:_puzzle_step:0])
                             yCone(4.6,2.8,   _ls/2+section_length-1.2,i,j, 0,90,180);
                 }//union
-            }//translate
+                }//translate
+             }//is section
         }//difference
     }//transform
 }//module
