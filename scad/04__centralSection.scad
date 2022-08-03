@@ -3,8 +3,10 @@ include <../../lib/lib2/ext/motor.scad>
 
 
 
-catamaranBody(-150,0,0);        
-
+catamaranBody(-150,20,0);        
+//chassisFront(0,20,0,    0,180,0);
+//mirror([0,1,0])
+//chassisFront(0,20,0,    0,180,0);
 //2print
 //engineTurbine(0,0,0, 0,-90,45);
 //engineTurbine(-20,10,0, 0,-90,cw=0);
@@ -22,15 +24,31 @@ module chassisFront(px=0,py=0,pz=0, rx=0,ry=0,rz=0, mx=0,my=0,mz=0, cw=1){
     rotate([rx,ry,rz]){
         translate([-50,0,-6])
         difference(){
-            yCube(100,100,10,  -10,50,0);
-            yCube(80,30,50,     -10,50,0);            
-            
+            yCube(100,145,20,  0,52.5,-5);
+            yCube(101,130,11,  0,50,-10.5);
+            yCube(80,30,50,     -8,50,0);            
+            yCube(40,130,10,  35,50,-10,    0,-30,0);
+            //bottom holes
             for (i=[0:20:50]){
                 for (j=[20:20:80]){
-                    yCyl(1,20,  i-15,j,-10);
+                    yCyl(2,20,  i-15,j,-4);
                 }//for j
-            }//for i            
+            }//for i      
+            //top
+            for (i=[-20:20:70]){
+                for (j=[-40:20:150]){
+                    yCyl(1,20,  i-15,j,-5);
+                }//for j
+            }//for i 
+            for (i=[-20:20:70]){                
+                    yCyl(2,30,  i-15,120,-4);                
+                    yCone(5,15, i-15,120,0, 180,0,0);
+            }//for i                                      
+            yCyl(3.5,30,    25,-20,-5);
+            yCyl(3.5,30,    -35,-20,-5);
         }//diff
+        
+        //yTube(10,5,5,   0,0,0);
     }//transform
 }//module        
 
