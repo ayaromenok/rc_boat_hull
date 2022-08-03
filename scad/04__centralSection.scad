@@ -5,6 +5,9 @@ include <../../lib/lib2/ext/motor.scad>
 
 catamaranBody(-150,20,0);        
 //chassisFront(0,20,0,    0,180,0);
+//chassisBack(ry=180);
+//mirror([0,1,0])
+//chassisBack(ry=180);
 //mirror([0,1,0])
 //chassisFront(0,20,0,    0,180,0);
 //2print
@@ -18,6 +21,37 @@ catamaranBody(-150,20,0);
 //shaftHolderBack(0,0,0, 0,-90,0);
 //shaftHolderBack(0,0,0, 0,0,0);
 //nameFalke();
+
+module chassisBack(px=0,py=0,pz=0, rx=0,ry=0,rz=0, mx=0,my=0,mz=0, cw=1){
+    translate([px,py,pz])
+    rotate([rx,ry,rz]){
+        translate([-50,0,-6])
+        difference(){
+            union(){
+                yCube(30,145,10,  -5,52.5,0);
+                yCube(100,25,10,  0,-7.5,0);
+                yCube(100,10,10,  0,120,0);
+            }//union
+            yCube(101,130,11,  0,50,-10.5);            
+            yCube(40,140,10,  35,45,-10,    0,-30,0);
+            
+            //top
+            for (i=[-30:10:70]){
+                for (j=[-40:10:150]){
+                    yCyl(1,20,  i-15,j,5);
+                }//for j
+            }//for i 
+            for (i=[-20:20:70]){                
+                    yCyl(2,30,  i-15,120,-4);                
+                    yCone(5,15, i-15,120,0, 180,0,0);
+            }//for i                                      
+            yCyl(3.5,30,    25,-20,-5);
+            yCyl(3.5,30,    -35,-20,-5);
+        }//diff
+        
+        //yTube(10,5,5,   0,0,0);
+    }//transform
+}//module        
 
 module chassisFront(px=0,py=0,pz=0, rx=0,ry=0,rz=0, mx=0,my=0,mz=0, cw=1){
     translate([px,py,pz])
@@ -64,6 +98,7 @@ module catamaranBody(px=0,py=0,pz=0, rx=0,ry=0,rz=0, mx=0,my=0,mz=0){
         shaftHolderBack();
         engineTurbine(145,0,10,  0,-10,0);
         chassisFront(150,0,0);
+        chassisBack(-100,0,5);
         
         color("blue")
         translate([-50,50,-60])
