@@ -6,12 +6,12 @@ include <../../lib/lib2/ext/servo.scad>
 
 catamaranBody(-150,20,0);
 //engineTopFrontCover();
-//translate([-385,0,10]){
+translate([-385,0,10]){
 //rudderTop(rx=180);
-//rudderTop(-8,0,10);        
-//rudderHolder(isMetal=false);
-//rudder(-8,0,-6, 180,0,0);
-//}
+rudderTop(-8,0,10);        
+rudderHolder(isMetal=true);
+rudder(-8,0,-6, 180,0,0);
+}
 //chassisFront(0,20,0,    0,180,0);
 //chassisBack(ry=180);
 //mirror([0,1,0])
@@ -184,6 +184,7 @@ module catamaranBody(px=0,py=0,pz=0, rx=0,ry=0,rz=0, mx=0,my=0,mz=0){
         engineTurbine(145,0,10,  0,-10,0);
         chassisFront(150,0,0);
         chassisBack(-100,0,5);
+        engineTopFrontCover(122,50,0, 0,0,-90);
         
         color("blue")
         translate([-50,50,-60])
