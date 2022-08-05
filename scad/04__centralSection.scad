@@ -1,9 +1,15 @@
 include <../../lib/lib2.scad>
 include <../../lib/lib2/ext/motor.scad>
+include <../../lib/lib2/ext/servo.scad>
 
 
 
-catamaranBody(-150,20,0);        
+catamaranBody(-150,20,0);
+translate([-385,0,10]){
+rudderTop(-8,0,10);        
+rudderHolder(isMetal=true);
+rudder(-8,0,-6, 180,0,0);
+}
 //chassisFront(0,20,0,    0,180,0);
 //chassisBack(ry=180);
 //mirror([0,1,0])
@@ -21,6 +27,72 @@ catamaranBody(-150,20,0);
 //shaftHolderBack(0,0,0, 0,-90,0);
 //shaftHolderBack(0,0,0, 0,0,0);
 //nameFalke();
+
+module rudderTop(px=0,py=0,pz=0, rx=0,ry=0,rz=0, length=100){
+    translate([px,py,pz])
+    rotate([rx,ry,rz]){
+        difference(){
+            union(){
+                yMinkCubeCyl(7,20,5, 2,   0,10,5);
+                yCyl(10,13, 0,0,1.);
+                yCyl(5.5,8, 0,0,-9.5);
+            }//union
+            yCone(8,20,    0,0,0, 180,0,0);
+            yCyl(1.8,20, 0,0,-10);
+            //to servo
+            yCyl(0.8,20, 0,10,10);
+            yCyl(0.8,20, 0,13.5,10);
+            yCyl(0.8,20, 0,17,10);
+        }//difference
+        
+        
+    }//transform
+}//module      
+
+module rudder(px=0,py=0,pz=0, rx=0,ry=0,rz=0, length=100){
+    translate([px,py,pz])
+    rotate([rx,ry,rz]){
+        difference(){
+            yCyl(20,3,  0,0,0);
+            yCyl(1,20,  0,0,0);
+            }//diff
+        yCyl(2.5,length,  0,0,length/2,  sx=8);
+    }//transform
+}//module      
+
+
+module rudderHolder(px=0,py=0,pz=0, rx=0,ry=0,rz=0, isMetal=false){
+    translate([px,py,pz])
+    rotate([rx,ry,rz]){
+        difference(){
+            union(){
+                yCyl(20,8,  -8,0,0);        
+                yMinkCubeCyl(30,70,8, 5,   50,0,0);
+                yMinkCubeCyl(70,12,8, 5,   12,14,0, 0,0,30);
+                yMinkCubeCyl(70,12,8, 5,   12,-14,0, 0,0,-30);
+            }//union
+            //rudder
+            yCyl(6,10,  -8,0,0);        
+            //to chassis
+            for (i=[40:10:60]){
+                for (j=[-30:10:-10]){
+                    yCyl(1.8,20,  i,j,0);
+                }//for j
+            }//for i
+            for (i=[40:10:60]){
+                for (j=[10:10:30]){
+                    yCyl(1.8,20,  i,j,0);
+                }//for j
+            }//for i
+            //for servo
+            yCyl(1,20,  9,0,0);
+            yCyl(1,20,  37,0,0);
+        }//difference        
+        if (isMetal){
+            servoSg90(23,0,0, 0,0,180);
+        }//isMetal
+    }//transform
+}//module      
 
 module chassisBack(px=0,py=0,pz=0, rx=0,ry=0,rz=0, mx=0,my=0,mz=0, cw=1){
     translate([px,py,pz])
@@ -277,3 +349,4 @@ module shaftHolderBack(px=0,py=0,pz=0, rx=0,ry=0,rz=0, mx=0,my=0,mz=0){
         
     }//transform
 }//module        
+
