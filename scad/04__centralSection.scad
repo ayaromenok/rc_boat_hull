@@ -3,12 +3,13 @@ include <../../lib/lib2/ext/motor.scad>
 include <../../lib/lib2/ext/servo.scad>
 
 
-engineTopFrontCover();
-//catamaranBody(-150,20,0);
+
+catamaranBody(-150,20,0);
+//engineTopFrontCover();
 //translate([-385,0,10]){
 //rudderTop(rx=180);
 //rudderTop(-8,0,10);        
-//rudderHolder(isMetal=true);
+//rudderHolder(isMetal=false);
 //rudder(-8,0,-6, 180,0,0);
 //}
 //chassisFront(0,20,0,    0,180,0);
@@ -36,8 +37,8 @@ module engineTopFrontCover(px=0,py=0,pz=0, rx=0,ry=0,rz=0, length=100){
             yCube(50,50,20, 0,0,-10);
             yCube(50,50,50, 0,-25,10);
         }//diff
-        yTube(4,1.8,2,    10,22,0);
-        yTube(4,1.8,2,    -10,22,0);
+        yTube(4,1.8,3,    10,22,1.5);
+        yTube(4,1.8,3,    -10,22,1.5);
     }//transform
 }//module
     
@@ -77,10 +78,10 @@ module rudderHolder(px=0,py=0,pz=0, rx=0,ry=0,rz=0, isMetal=false){
     rotate([rx,ry,rz]){
         difference(){
             union(){
-                yCyl(20,8,  -8,0,0);        
-                yMinkCubeCyl(30,70,8, 5,   50,0,0);
-                yMinkCubeCyl(70,12,8, 5,   12,14,0, 0,0,30);
-                yMinkCubeCyl(70,12,8, 5,   12,-14,0, 0,0,-30);
+                yCyl(20,8,  -8,0,0);                        
+                yMinkCubeCyl(30,48,8, 5,   50,0,0);
+                yMinkCubeCyl(70,12,8, 5,   12,13,0, 0,0,10);
+                yMinkCubeCyl(70,12,8, 5,   12,-13,0, 0,0,-10);
             }//union
             //rudder
             yCyl(6,10,  -8,0,0);        
@@ -100,6 +101,7 @@ module rudderHolder(px=0,py=0,pz=0, rx=0,ry=0,rz=0, isMetal=false){
             yCyl(1,20,  37,0,0);
         }//difference        
         if (isMetal){
+            color("darkblue")
             servoSg90(23,0,0, 0,0,180);
         }//isMetal
     }//transform
