@@ -3,13 +3,14 @@ include <../../lib/lib2/ext/motor.scad>
 include <../../lib/lib2/ext/servo.scad>
 
 
-
-catamaranBody(-150,20,0);
-translate([-385,0,10]){
-rudderTop(-8,0,10);        
-rudderHolder(isMetal=true);
-rudder(-8,0,-6, 180,0,0);
-}
+engineTopFrontCover();
+//catamaranBody(-150,20,0);
+//translate([-385,0,10]){
+//rudderTop(rx=180);
+//rudderTop(-8,0,10);        
+//rudderHolder(isMetal=true);
+//rudder(-8,0,-6, 180,0,0);
+//}
 //chassisFront(0,20,0,    0,180,0);
 //chassisBack(ry=180);
 //mirror([0,1,0])
@@ -27,25 +28,35 @@ rudder(-8,0,-6, 180,0,0);
 //shaftHolderBack(0,0,0, 0,-90,0);
 //shaftHolderBack(0,0,0, 0,0,0);
 //nameFalke();
-
+module engineTopFrontCover(px=0,py=0,pz=0, rx=0,ry=0,rz=0, length=100){
+    translate([px,py,pz])
+    rotate([rx,ry,rz]){
+        difference(){
+            yTube(20,19.2,40,  0,-4,10, 25,0,0, $fn=6);
+            yCube(50,50,20, 0,0,-10);
+            yCube(50,50,50, 0,-25,10);
+        }//diff
+        yTube(4,1.8,2,    10,22,0);
+        yTube(4,1.8,2,    -10,22,0);
+    }//transform
+}//module
+    
 module rudderTop(px=0,py=0,pz=0, rx=0,ry=0,rz=0, length=100){
     translate([px,py,pz])
     rotate([rx,ry,rz]){
         difference(){
             union(){
-                yMinkCubeCyl(7,20,5, 2,   0,10,5);
+                yMinkCubeCyl(7,20,2, 2,   0,12,6.5);
                 yCyl(10,13, 0,0,1.);
-                yCyl(5.5,8, 0,0,-9.5);
+                yCyl(5.4,8, 0,0,-9.5);
             }//union
             yCone(8,20,    0,0,0, 180,0,0);
             yCyl(1.8,20, 0,0,-10);
             //to servo
-            yCyl(0.8,20, 0,10,10);
-            yCyl(0.8,20, 0,13.5,10);
-            yCyl(0.8,20, 0,17,10);
+            yCyl(0.8,20, 0,12,10);
+            yCyl(0.8,20, 0,15.5,10);
+            yCyl(0.8,20, 0,19,10);
         }//difference
-        
-        
     }//transform
 }//module      
 
